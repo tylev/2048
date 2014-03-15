@@ -1,0 +1,18 @@
+CACHE MANIFEST
+# Cache manifest version 0.0.30
+# If you change the version number in this comment,
+# the cache manifest is no longer byte-for-byte
+# identical.
+meta/apple-touch-icon.png
+http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js
+http://code.jquery.com/jquery-1.9.1.min.js
+http://store.avalonic.com/js/inobounce.js
+style/main.css
+js/animframe_polyfill.js
+js/keyboard_input_manager.js 
+js/html_actuator.js
+js/grid.js
+js/tile.js
+js/local_score_manager.js
+js/game_manager.js
+js/application.js

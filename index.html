@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html manifest="cache.manifest" type="text/cache-manifest">
 <head>
   <meta charset="utf-8">
   <title>2048</title>
-
+    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script> 
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script> 
+    <script src="http://store.avalonic.com/js/inobounce.js"></script>
+    <script type="text/javascript">
+      var handleMove = function (e) {
+          var scrollable = false;
+          var items = $(e.target).parents();
+        $(items).each(function(i,o) {
+          if ($(o).hasId("#content")) {
+              scrollable = true; } } );
+        if (!scrollable) e.preventDefault(); };
+      document.addEventListener('touchmove', handleMove, true);  
+    </script>    
   <link href="style/main.css" rel="stylesheet" type="text/css">
-  <link rel="shortcut icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
 
@@ -63,19 +74,75 @@
 
       </div>
     </div>
-
-    <p class="game-explanation">
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
-    </p>
-    <hr>
-    <p>
-    <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution.
-    </p>
-    <hr>
-    <p>
-    Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
-    </p>
+    <p class="btmbtn" id="openplay" style="float:left"><strong class="important">How to play</strong></p></a>
+    <p class="btmbtn" id="opencredits" style="float:right"><strong class="important">Credits</strong></p>
+    <div id="howtoplay">
+      <p>
+        <strong class="important">How to play:</strong> <strong>Swipe</strong> to move the tiles. When two tiles with the same number touch, they <strong>merge into one!</strong>
+      </p>
+    </div>
+    <div id="credits">
+      <p>
+      Created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a> App by <a href="http://twitter.com/tylermevans" target="_blank">Tyler Evans.</a>
+      </p>
+    </div>
   </div>
+  <script type="text/javascript">
+      $('#openplay').click(function () {
+        $('#howtoplay').slideToggle({
+          direction: "up"
+        }, 300);
+        $('#credits').hide();
+      }); 
+      $('#opencredits').click(function () {
+        $('#credits').slideToggle({
+          direction: "up"
+        }, 300);
+        $('#howtoplay').hide();
+      }); 
+  var cacheStatusValues = [];
+cacheStatusValues[0] = 'uncached';
+cacheStatusValues[1] = 'idle';
+cacheStatusValues[2] = 'checking';
+cacheStatusValues[3] = 'downloading';
+cacheStatusValues[4] = 'updateready';
+cacheStatusValues[5] = 'obsolete';
+
+var cache = window.applicationCache;
+cache.addEventListener('cached', logEvent, false);
+cache.addEventListener('checking', logEvent, false);
+cache.addEventListener('downloading', logEvent, false);
+cache.addEventListener('error', logEvent, false);
+cache.addEventListener('noupdate', logEvent, false);
+cache.addEventListener('obsolete', logEvent, false);
+cache.addEventListener('progress', logEvent, false);
+cache.addEventListener('updateready', logEvent, false);
+
+function logEvent(e) {
+    var online, status, type, message;
+    online = (navigator.onLine) ? 'yes' : 'no';
+    status = cacheStatusValues[cache.status];
+    type = e.type;
+    message = 'online: ' + online;
+    message+= ', event: ' + type;
+    message+= ', status: ' + status;
+    if (type == 'error' && navigator.onLine) {
+        message+= ' (prolly a syntax error in manifest)';
+    }
+    console.log(message);
+}
+
+window.applicationCache.addEventListener(
+    'updateready',
+    function(){
+        window.applicationCache.swapCache();
+        console.log('swap cache has been called');
+    },
+    false
+);
+
+setInterval(function(){cache.update()}, 10000);
+  </script>
 
   <script src="js/animframe_polyfill.js"></script>
   <script src="js/keyboard_input_manager.js"></script>

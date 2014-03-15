@@ -53,6 +53,33 @@ h1.title {
   float: right;
   text-align: right; }
 
+#howtoplay {
+  position:absolute;
+  bottom: 115px;
+  width: 256px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #faf8ef;
+  z-index: 3;
+  border: 2px solid #776e65;
+  border-radius: 7px;
+  display: none;
+  padding-top: 10px;
+}
+
+#credits {
+  position:absolute;
+  bottom: 115px;
+  width: 256px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #faf8ef;
+  z-index: 3;
+  border: 2px solid #776e65;
+  border-radius: 7px;
+  display: none;
+  padding-top: 10px;
+}
 .score-container, .best-container {
   position: relative;
   display: inline-block;
@@ -118,7 +145,11 @@ hr {
 
 .container {
   width: 500px;
-  margin: 0 auto; }
+  margin: 0 auto; 
+  height:480px;
+  overflow:auto;
+  -webkit-overflow-scrolling: touch; 
+}
 
 @-webkit-keyframes fade-in {
   0% {
@@ -141,8 +172,13 @@ hr {
   100% {
     opacity: 1; } }
 
+.btmbtn {
+  margin-top: 30px;
+  margin-bottom: 0;
+  font-size: 24px;
+}
 .game-container {
-  margin-top: 40px;
+  margin-top: 15px;
   position: relative;
   padding: 15px;
   cursor: default;
@@ -447,7 +483,8 @@ hr {
   -moz-animation-fill-mode: both; }
 
 .game-intro {
-  margin-bottom: 0; }
+  margin-bottom: 0; 
+  font-size: 14px;}
 
 .game-explanation {
   margin-top: 50px; }
@@ -457,16 +494,18 @@ hr {
     font-size: 15px; }
 
   body {
-    margin: 20px 0;
+    margin:0;
+    margin-top: 20px;
     padding: 0 20px; }
 
   h1.title {
-    font-size: 27px;
-    margin-top: 15px; }
+    font-size: 33px;
+    margin-top: 12px; }
 
   .container {
     width: 280px;
-    margin: 0 auto; }
+    margin: 0 auto;
+    padding-top: 20px; }
 
   .score-container, .best-container {
     margin-top: 0;
@@ -627,7 +666,7 @@ hr {
       top: 203px; }
 
   .game-container {
-    margin-top: 20px; }
+    margin-top: 40px; }
 
   .tile {
     font-size: 35px; }
